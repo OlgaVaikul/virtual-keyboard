@@ -1,3 +1,7 @@
+body{
+    background: url(./bg.jpg) no-repeat;
+    background-size: 100%;
+}
 .wrapper{
     margin: 0 auto;
     font-family: "Trebuchet MS", "Helvetica", sans-serif;
@@ -5,11 +9,13 @@
 
 p {
     font-size: 30px;
-    color: rgba(31, 90, 167, 0.8);
+    color: rgba(250, 252, 255, 0.8);
     margin: 10px auto;
     text-align: center;
 }
+
 textarea {
+    background-color: rgba(144, 182, 230, 0.8);
     display: block;
     width: 720px;
     height: 190px;
@@ -18,22 +24,31 @@ textarea {
     font-size: 18px;
     color: #444444
 }
+
 .description {
     margin: 10px auto;
 }
-#keyboard{
+
+.keyboard {
+    width: 704px;
     display: block;
     margin: 0 auto;
     padding: 5px;
+    padding-left: 0;
+    padding-bottom: 0;
     background: #888888;
     border: 3px solid #222222;
-    border-radius: 5px;
+    border-radius: 5px
 }
-
-.key{
+.keyboard::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.keyboard .key {
     float: left;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     margin-left: 6px;
     font-weight: 500;
     line-height: 40px;
@@ -41,4 +56,23 @@ textarea {
     color: #ffffff;
     background: #444444;
     border-radius: 3px;
+    cursor: pointer;
+    transition: border-radius 0.3s, background-color 0.3s
 }
+
+.keyboard .clearfix{
+    display: block;
+    clear: both;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.keyboard .key:hover {
+    background: #79aa89
+}
+
+.keyboard .key.active {
+    background-color: #2cfd72;
+    border-radius: 50px
+}
+
