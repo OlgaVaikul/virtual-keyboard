@@ -12,7 +12,7 @@ function showWrapper() {
     <textarea class="textarea"></textarea>
     <div class="body-keyboard keyboard" id="keyboard"></div>
     <p class="description">Клавиатура создана в операционной системе Windows</p>
-    <p class="language">Для переключения языка комбинация: левыe ctrl + alt</p>`;
+    <p class=""</p>`;
     document.body.append(div);
   }
   showWrapper();
@@ -53,19 +53,34 @@ function showWrapper() {
     }
 });
 
-const b = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h",
-"j", "k", "l", "z", "x", "c", "v", "b", "n", "m", ".", ","];
+const b = [
+    "`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace",
+    "Tab","Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]", "\\","Del",
+    "CapsLock", "A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'", "Enter",
+    "Shift", "Z", "X", "C", "V", "B", "N", "M", ",", ".", "/", "▲", "Shift",
+    "Ctrl", "Win", "Alt", " ", "Alt", "◄", "▼", "►", "Ctrl"];
 
-const b_shift = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H",
-"J", "K", "L", "Z", "X", "C", "V", "B", "N", "M", ".", ","];
-
-const b_ru = [];
-
-const b_shift_ru = [];
+const b_ru = ["Ё", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace",
+"Tab","Й", "Ц", "У", "К", "Е", "Н", "Г", "Ш", "Щ", "З", "Х", "Ъ", "\\","Del",
+"CapsLock", "Ф", "Ы", "В", "А", "П", "Р", "О", "Л", "Д", "Ж", "Э", "Enter",
+"Shift", "Я", "Ч", "С", "М", "И", "Т", "Ь", "Б", "Ю", ".", "▲", "Shift",
+"Ctrl", "Win", "Alt", " ", "Alt", "◄", "▼", "►", "Ctrl"];
 
 
 let text = document.querySelector(".textarea");
 
+
+let j = -1;
+const mass = (arr) => {
+	++j;
+	if(j < arr.length){
+		return arr[j];
+	}
+	else {
+		j = 0;
+		return arr[j];
+	}
+}
 const func = (param, func, k) => {
 	if(k == null) {
 		document.querySelector(param).onclick = func;
@@ -74,6 +89,24 @@ const func = (param, func, k) => {
 		document.querySelectorAll(param).forEach(func);
 	}
 }
+
+const paramStyle = (param, css) => {
+	document.querySelector(param).style = css;
+}
+
+func(".caps", (element) => {
+	element.onclick = () => {
+		count_caps += 1;	
+		if(count_caps % 2){
+			func(".key", (element) => {element.innerHTML = mass(b_shift)}, "all");
+			func(".key_ua", (element) => {element.innerHTML = mass(b_shift_ua)}, "all");
+		}
+		else {
+			func(".key", (element) => {element.innerHTML = mass(b)}, "all");
+			func(".key_ua", (element) => {element.innerHTML = mass(b_ua)}, "all");
+		}	
+	}
+}, "all");
 
 func(".key", (element) => {
 	element.onclick = () => {
